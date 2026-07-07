@@ -1,0 +1,184 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="2_game"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_player"]
+albedo_color = Color(0.08, 0.32, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_coin"]
+albedo_color = Color(1, 0.72, 0.06, 1)
+emission_enabled = true
+emission = Color(1, 0.52, 0.03, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_obstacle"]
+albedo_color = Color(0.92, 0.12, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="Mat_floor"]
+albedo_color = Color(0.16, 0.62, 0.25, 1)
+
+[sub_resource type="BoxMesh" id="Mesh_floor"]
+size = Vector3(12, 0.1, 16)
+
+[sub_resource type="BoxMesh" id="Mesh_player"]
+size = Vector3(0.9, 0.9, 0.9)
+
+[sub_resource type="CylinderMesh" id="Mesh_coin"]
+top_radius = 0.35
+bottom_radius = 0.35
+height = 0.15
+radial_segments = 24
+
+[sub_resource type="BoxMesh" id="Mesh_obstacle"]
+size = Vector3(1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="Shape_floor"]
+size = Vector3(12, 0.2, 16)
+
+[sub_resource type="BoxShape3D" id="Shape_player"]
+size = Vector3(0.9, 0.9, 0.9)
+
+[sub_resource type="CylinderShape3D" id="Shape_coin"]
+radius = 0.45
+height = 0.3
+
+[sub_resource type="BoxShape3D" id="Shape_obstacle"]
+size = Vector3(1.2, 1.0, 1.0)
+
+[sub_resource type="SphereShape3D" id="Shape_goal"]
+radius = 1.1
+
+[node name="Main" type="Node3D"]
+script = ExtResource("2_game")
+
+[node name="FloorBody" type="StaticBody3D" parent="."]
+
+[node name="FloorCollision" type="CollisionShape3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.08, 0)
+shape = SubResource("Shape_floor")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="FloorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("Mesh_floor")
+surface_material_override/0 = SubResource("Mat_floor")
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, -6)
+script = ExtResource("1_player")
+
+[node name="PlayerCollision" type="CollisionShape3D" parent="Player"]
+shape = SubResource("Shape_player")
+
+[node name="PlayerMesh" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("Mesh_player")
+surface_material_override/0 = SubResource("Mat_player")
+
+[node name="Coin01" type="Area3D" parent="." groups=["coins"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -3, 0.6, -3)
+
+[node name="Mesh" type="MeshInstance3D" parent="Coin01"]
+mesh = SubResource("Mesh_coin")
+surface_material_override/0 = SubResource("Mat_coin")
+
+[node name="Collision" type="CollisionShape3D" parent="Coin01"]
+shape = SubResource("Shape_coin")
+
+[node name="Coin02" type="Area3D" parent="." groups=["coins"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.6, -2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Coin02"]
+mesh = SubResource("Mesh_coin")
+surface_material_override/0 = SubResource("Mat_coin")
+
+[node name="Collision" type="CollisionShape3D" parent="Coin02"]
+shape = SubResource("Shape_coin")
+
+[node name="Coin03" type="Area3D" parent="." groups=["coins"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3, 0.6, -1)
+
+[node name="Mesh" type="MeshInstance3D" parent="Coin03"]
+mesh = SubResource("Mesh_coin")
+surface_material_override/0 = SubResource("Mat_coin")
+
+[node name="Collision" type="CollisionShape3D" parent="Coin03"]
+shape = SubResource("Shape_coin")
+
+[node name="Coin04" type="Area3D" parent="." groups=["coins"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 0.6, 2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Coin04"]
+mesh = SubResource("Mesh_coin")
+surface_material_override/0 = SubResource("Mat_coin")
+
+[node name="Collision" type="CollisionShape3D" parent="Coin04"]
+shape = SubResource("Shape_coin")
+
+[node name="Coin05" type="Area3D" parent="." groups=["coins"]]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 0.6, 4)
+
+[node name="Mesh" type="MeshInstance3D" parent="Coin05"]
+mesh = SubResource("Mesh_coin")
+surface_material_override/0 = SubResource("Mat_coin")
+
+[node name="Collision" type="CollisionShape3D" parent="Coin05"]
+shape = SubResource("Shape_coin")
+
+[node name="Hazard01" type="Area3D" parent="." groups=["hazards"]]
+transform = Transform3D(1.6, 0, 0, 0, 1, 0, 0, 0, 0.9, -1.8, 0.45, 0.2)
+
+[node name="Mesh" type="MeshInstance3D" parent="Hazard01"]
+mesh = SubResource("Mesh_obstacle")
+surface_material_override/0 = SubResource("Mat_obstacle")
+
+[node name="Collision" type="CollisionShape3D" parent="Hazard01"]
+shape = SubResource("Shape_obstacle")
+
+[node name="Hazard02" type="Area3D" parent="." groups=["hazards"]]
+transform = Transform3D(0.45, 0, 0, 0, 1.8, 0, 0, 0, 0.9, 2.2, 0.45, 1.8)
+
+[node name="Mesh" type="MeshInstance3D" parent="Hazard02"]
+mesh = SubResource("Mesh_obstacle")
+surface_material_override/0 = SubResource("Mat_obstacle")
+
+[node name="Collision" type="CollisionShape3D" parent="Hazard02"]
+shape = SubResource("Shape_obstacle")
+
+[node name="Hazard03" type="Area3D" parent="." groups=["hazards"]]
+transform = Transform3D(3.2, 0, 0, 0, 0.45, 0, 0, 0, 0.9, 0, 0.45, 5.5)
+
+[node name="Mesh" type="MeshInstance3D" parent="Hazard03"]
+mesh = SubResource("Mesh_obstacle")
+surface_material_override/0 = SubResource("Mat_obstacle")
+
+[node name="Collision" type="CollisionShape3D" parent="Hazard03"]
+shape = SubResource("Shape_obstacle")
+
+[node name="Goal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 7)
+
+[node name="Collision" type="CollisionShape3D" parent="Goal"]
+shape = SubResource("Shape_goal")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.515038, 0.857167, 0, -0.857167, 0.515038, 0, 9, 12)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, 0, 8, 0)
+light_energy = 2.2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 60.0
+text = "Score: 0 / 5"
+
+[node name="MessageLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 500.0
+offset_bottom = 110.0
+text = "WASD/방향키로 이동, Space로 점프"

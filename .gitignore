@@ -1,0 +1,55 @@
+# Local binaries and third-party checkouts
+tools/
+mcp/*
+!mcp/.gitkeep
+
+# Generated assets/builds
+build/
+exports/
+*.blend1
+*.tmp
+*.log
+screenshots/
+
+# Godot local/editor caches
+.godot/
+*.uid
+*.import
+export_presets.cfg
+
+# Large game/media exports
+*.zip
+*.pck
+*.wasm
+*.apk
+*.aab
+*.exe
+*.dmg
+*.mp4
+*.mov
+*.webm
+*.mkv
+
+# Secrets
+.env
+.env.*
+!.env.example
+*token*.json
+*oauth*.json
+*credential*.json
+*secret*.json
+cookies.json
+client_secret*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

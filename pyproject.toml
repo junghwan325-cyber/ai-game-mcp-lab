@@ -3,7 +3,7 @@ name = "ai-game-mcp-lab"
 version = "0.1.0"
 description = "Secret-free lab for AI-assisted Blender and Godot game prototyping"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.12,<3.13"
 license = { text = "MIT" }
 authors = [{ name = "Anthony Park" }]
 
